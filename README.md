@@ -29,7 +29,7 @@ uid/gid:
 
 ## build with
 
-* [nginx/alpine:stable](https://github.com/docker-library/mariadb/blob/7384b25a0196d8a7e62173781df5a5bed1eb88d2/10.4/Dockerfile) - official mariadb container
+* [mariadb](https://github.com/docker-library/mariadb/blob/7384b25a0196d8a7e62173781df5a5bed1eb88d2/10.4/Dockerfile) - official mariadb container
 
 ## tips
 
