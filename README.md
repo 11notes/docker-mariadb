@@ -15,6 +15,7 @@ docker build -t YOURNAME/YOURCONTAINER:YOURTAG .
 ## docker run
 ```shell
 docker run --name mariadb \
+    -u 1000:1000 \ #don't run container as root!
     -v volume-db:/var/lib/mysql \
     -d 11notes/mariadb:latest
 ```
