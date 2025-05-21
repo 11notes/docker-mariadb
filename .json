@@ -1,0 +1,22 @@
+{
+  "image":"11notes/mariadb",
+  "name":"mariadb",
+  "root":"/mariadb",
+  
+  "semver":{
+    "version":"11.4.5"
+  },
+
+  "readme":{
+    "description":"mariadb as simple and secure as it gets",
+    "parent":{
+      "image":"11notes/alpine:stable"
+    },
+    "built":{
+      "mariadb":"https://github.com/MariaDB/server"
+    },
+    "comparison": {
+      "image": "mariadb:11.4.5"
+    }
+  }
+}

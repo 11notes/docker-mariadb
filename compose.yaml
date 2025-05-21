@@ -1,0 +1,39 @@
+name: "mariadb"
+services:
+  serverp:
+    image: "11notes/mariadb:11.4.5"
+    read_only: true
+    environment:
+      TZ: "Europe/Zurich"
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+    volumes:
+      - "etc:/mariadb/etc"
+      - "var:/mariadb/var"
+      - "backup:/mariadb/backup"
+      - "cmd:/run/cmd"
+    tmpfs:
+      # needed for read-only file system to work
+      - "/run/mariadb:uid=1000,gid=1000"
+      - "/tmp:uid=1000,gid=1000"
+    restart: "always"
+
+  cron:
+    depends_on:
+      server:
+        condition: "service_healthy"
+        restart: true
+    image: "11notes/cron:4.6"
+    environment:
+      TZ: "Europe/Zurich"
+      # run backup every day at 03:00
+      CRONTAB: |-
+        0 3 * * * cmd-socket '{"bin":"backup"}' > /proc/1/fd/1
+    volumes:
+      - "cmd:/run/cmd"
+    restart: "always"
+
+volumes:
+  etc:
+  var:
+  cmd:
+  backup:
