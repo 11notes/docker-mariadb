@@ -1,6 +1,6 @@
 name: "mariadb"
 services:
-  serverp:
+  server:
     image: "11notes/mariadb:11.4.5"
     read_only: true
     environment:
