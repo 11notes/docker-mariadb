@@ -25,7 +25,7 @@ Below you find a comparison between this image and the most used or original one
 
 | **image** | 11notes/mariadb:11.4.5 | mariadb:11.4.5 |
 | ---: | :---: | :---: |
-| **image size on disk** | 281MB | 327MB |
+| **image size on disk** | 277MB | 327MB |
 | **process UID/GID** | 1000/1000 | 0/0 |
 | **distroless?** | ❌ | ❌ |
 | **rootless?** | ✅ | ❌ |
@@ -40,7 +40,7 @@ Below you find a comparison between this image and the most used or original one
 ```yaml
 name: "mariadb"
 services:
-  serverp:
+  server:
     image: "11notes/mariadb:11.4.5"
     read_only: true
     environment:
@@ -130,4 +130,4 @@ docker pull quay.io/11notes/mariadb:11.4.5
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-mariadb/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-mariadb/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-mariadb/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 21.05.2025, 21:23:36 (CET)*
+*created 21.05.2025, 23:45:28 (CET)*
