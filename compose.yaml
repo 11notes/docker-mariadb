@@ -11,10 +11,11 @@ services:
       - "var:/mariadb/var"
       - "backup:/mariadb/backup"
       - "cmd:/run/cmd"
+    ports:
+      - "3306:3306/tcp"
     tmpfs:
       # needed for read-only file system to work
       - "/run/mariadb:uid=1000,gid=1000"
-      - "/tmp:uid=1000,gid=1000"
     restart: "always"
 
   cron:

@@ -33,8 +33,7 @@
     ENV APP_IMAGE=${APP_IMAGE} \
         APP_NAME=${APP_NAME} \
         APP_VERSION=${APP_VERSION} \
-        APP_ROOT=${APP_ROOT} \
-        TINI_PM_CONFIG=/tini-pm/config.yml
+        APP_ROOT=${APP_ROOT}
 
   # :: app specific variables
     ENV MARIADB_SOCKET=/run/mariadb/mariadbd.sock \
@@ -51,9 +50,10 @@
   # :: prepare image
     RUN set -ex; \
       eleven mkdir ${APP_ROOT}/{etc,var,backup}; \
+      mkdir -p ${APP_ROOT}/var/tmp; \
       mkdir -p /run/cmd; \
       rm -rf /var/tmp; \
-      ln -sf /tmp /var/tmp;
+      ln -sf ${APP_ROOT}/var/tmp /var/tmp;
 
   # :: install application
     RUN set -ex; \
@@ -71,7 +71,6 @@
     RUN set -ex; \
       chmod +x -R /usr/local/bin; \
       chown -R ${APP_UID}:${APP_GID} \
-        /tini-pm \
         ${APP_ROOT};
 
 # :: PERSISTENT DATA
@@ -79,7 +78,7 @@
 
 # :: HEALTH
   HEALTHCHECK --interval=5s --timeout=2s --start-interval=30s \
-    CMD /usr/local/bin/healthcheck.sh
+    CMD ["/usr/local/bin/healthcheck.sh"]
 
 # :: EXECUTE
   USER ${APP_UID}:${APP_GID}

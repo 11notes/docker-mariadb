@@ -1,0 +1,5 @@
+#!/bin/ash
+  if [ mariadb --socket=${MARIADB_SOCKET} ]; then
+    return $(mariadb --socket=${MARIADB_SOCKET} --execute "${1}" | awk '{print $1}' | head -2  | tail -1)
+  fi
+  return ${2}

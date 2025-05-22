@@ -3,32 +3,23 @@
 [mysqld]
 bind-address=0.0.0.0
 datadir=/mariadb/var
-tmpdir=/tmp
+tmpdir=/mariadb/var/tmp
 pid-file=/run/mariadb/mariadbd.pid
 socket=/run/mariadb/mariadbd.sock
 collation-server = utf8mb4_unicode_ci
 init-connect = 'SET NAMES utf8mb4'
 character-set-server = utf8mb4
 binlog_format=ROW
+log-bin=ON
 default-storage-engine=InnoDB
 innodb_autoinc_lock_mode=2
 
 [galera]
-wsrep_on=OFF
-wsrep_cluster_name=galera
-wsrep_cluster_address=gcomm://
-wsrep_provider=/usr/lib/libgalera_smm.so
-wsrep_provider_options="gcache.size=2048M; gcache.keep_pages_size=1024M; gcache.recover=yes;"
-wsrep_sst_method=mariabackup
-wsrep_notify_cmd=/usr/local/bin/wsrep_notify.sh
-wsrep_slave_threads=4
 
 [sst]
-sst-log-archive=0
 
 [embedded]
 
 [mariadb]
-wsrep_sst_auth = mariabackup:
 
 [mariadb-10.5]
